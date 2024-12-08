@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 600px;
+    height: 600px;
+}
+
+.add-item {
+
+}
+
+.add-item__item-title {
+    font-size: 50px;
+    border-bottom: 1px solid black;
+    padding: 15px 0;
+}
+
+.add-item__item-input {
+    padding: 15px 0;
+}
+
+.list-item__item-title {
+    font-size: 50px;
+    border-bottom: 1px solid black;
+    padding: 15px 0;
+}
+
+.completed-item__item-title {
+    font-size: 50px;
+    border-bottom: 1px solid black;
+    padding: 15px 0;
+}
