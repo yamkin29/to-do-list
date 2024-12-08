@@ -1,67 +1,85 @@
+const addButton = document.querySelector('.add-item__item-input button');
+const inputField = document.querySelector('.add-item__item-input input');
 const todoList = document.querySelector('.list-item');
-const completedList = document.querySelector('.completed-item ');
+const completedList = document.querySelector('.completed-item');
 
-const moveToCompleted = (item) => {
+function moveToCompleted(item) {
     completedList.appendChild(item);
 }
 
-const moveToTodo = (item) => {
+function moveToTodo(item) {
     todoList.appendChild(item);
 }
 
-const addButton = document.querySelector('.add-item__item-input button');
 addButton.addEventListener('click', () => {
-    console.log('click');
-})
-
-const inputField = document.querySelector('.add-item__item-input input');
-addButton.addEventListener('click', () => {
-    const inputValue = inputField.value;
-    console.log(inputValue);
-})
-
-addButton.addEventListener('click', () => {
-    const inputValue = inputField.value;
-    if (inputValue.trim() !== '') {
+    const inputValue = inputField.value.trim();
+    if (inputValue) {
         const newItem = document.createElement('div');
         newItem.textContent = inputValue;
 
-        const checkBox = document.createElement('input');
-        checkBox.type = 'checkbox';
-
-        checkBox.addEventListener('change', () => {
-            if (checkBox.checked) {
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
                 moveToCompleted(newItem);
             } else {
                 moveToTodo(newItem);
             }
-        })
+        });
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Удалить';
         deleteButton.addEventListener('click', () => {
             newItem.remove();
-        })
+        });
 
         const editButton = document.createElement('button');
-        editButton.textContent = 'Изменить';
+        editButton.textContent = 'Редактировать';
         editButton.addEventListener('click', () => {
-            const newText = prompt('Редактировать задачу', inputValue);
-            if (inputValue !== null) {
-                newItem.textContent = newText;
-                newItem.appendChild(checkBox);
+            const currentText = newItem.childNodes[1].nodeValue.trim();
+
+            const editInput = document.createElement('input');
+            editInput.type = 'text';
+            editInput.value = currentText;
+
+            newItem.textContent = '';
+
+            newItem.appendChild(editInput);
+
+            const saveButton = document.createElement('button');
+            saveButton.textContent = 'Сохранить';
+            saveButton.addEventListener('click', () => {
+                const updatedText = editInput.value.trim();
+                if (updatedText) {
+                    newItem.textContent = updatedText;
+                    newItem.prepend(checkbox);
+                    newItem.appendChild(deleteButton);
+                    newItem.appendChild(editButton);
+                }
+            });
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Отмена';
+            cancelButton.addEventListener('click', () => {
+                newItem.textContent = currentText;
+                newItem.prepend(checkbox);
                 newItem.appendChild(deleteButton);
                 newItem.appendChild(editButton);
-            }
-        })
+            });
 
-        newItem.appendChild(checkBox);
-        newItem.appendChild(editButton);
+            newItem.appendChild(saveButton);
+            newItem.appendChild(cancelButton);
+
+            editInput.focus();
+        });
+
+        newItem.prepend(checkbox);
         newItem.appendChild(deleteButton);
+        newItem.appendChild(editButton);
 
         todoList.appendChild(newItem);
-        inputField.value = '';
+        inputField.value = ''
     } else {
-        alert('Введите текст задачи');
+        console.log('Введите текст задачи!');
     }
-})
+});

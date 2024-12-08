@@ -8,11 +8,9 @@ body {
     height: 600px;
 }
 
-.add-item {
-
-}
-
-.add-item__item-title {
+.add-item__item-title,
+.list-item__item-title,
+.completed-item__item-title {
     font-size: 50px;
     border-bottom: 1px solid black;
     padding: 15px 0;
@@ -22,14 +20,12 @@ body {
     padding: 15px 0;
 }
 
-.list-item__item-title {
-    font-size: 50px;
-    border-bottom: 1px solid black;
-    padding: 15px 0;
+button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
-.completed-item__item-title {
-    font-size: 50px;
-    border-bottom: 1px solid black;
-    padding: 15px 0;
+button:hover {
+    background-color: #f0f0f0;
 }
