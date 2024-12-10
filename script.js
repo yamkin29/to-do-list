@@ -28,13 +28,13 @@ addButton.addEventListener('click', () => {
         });
 
         const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Удалить';
+        deleteButton.textContent = 'Delete';
         deleteButton.addEventListener('click', () => {
             newItem.remove();
         });
 
         const editButton = document.createElement('button');
-        editButton.textContent = 'Редактировать';
+        editButton.textContent = 'Edit';
         editButton.addEventListener('click', () => {
             const currentText = newItem.childNodes[1].nodeValue.trim();
 
@@ -47,7 +47,7 @@ addButton.addEventListener('click', () => {
             newItem.appendChild(editInput);
 
             const saveButton = document.createElement('button');
-            saveButton.textContent = 'Сохранить';
+            saveButton.textContent = 'Save';
             saveButton.addEventListener('click', () => {
                 const updatedText = editInput.value.trim();
                 if (updatedText) {
@@ -59,7 +59,7 @@ addButton.addEventListener('click', () => {
             });
 
             const cancelButton = document.createElement('button');
-            cancelButton.textContent = 'Отмена';
+            cancelButton.textContent = 'Cancel';
             cancelButton.addEventListener('click', () => {
                 newItem.textContent = currentText;
                 newItem.prepend(checkbox);
@@ -80,6 +80,6 @@ addButton.addEventListener('click', () => {
         todoList.appendChild(newItem);
         inputField.value = ''
     } else {
-        console.log('Введите текст задачи!');
+        console.log('Enter the task text!');
     }
 });
